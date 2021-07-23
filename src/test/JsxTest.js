@@ -43,7 +43,7 @@ function JsxTest() {
             <hr />
             <div>
                 {/* {users[0].username} */}
-                 
+                 {users.map((user) => <div>{user.username}</div>)}
             </div>
         </div>
     );
