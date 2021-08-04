@@ -43,6 +43,7 @@ function JsxTest() {
             <hr />
             <div>
                 {/* {users[0].username} */}
+                {/* 반복문은 return이 가능한 map을 사용*/}
                  {users.map((user) => <div>{user.username}</div>)}
             </div>
         </div>
@@ -51,3 +52,6 @@ function JsxTest() {
 
 //2. export는 자바의 public과 같다
 export default JsxTest;
+// default가 아닌 것들은 중괄호 처리해서 public화 한다(공개한다.)
+// num을 public화 시킨다 (외부에 공개하겠다는 뜻)
+export {num};
