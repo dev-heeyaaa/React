@@ -1,28 +1,53 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Center from './test/Center';
+import MyButton from './components/MyButton';
+import NavBar from './components/NavBar';
+import PostItem from './components/PostItem';
+import { getData } from './provider/Post';
 
-const StyledContainer = styled.div`
-  margin: 0 auto;
-  width: 80%;
-  background-color: darkblue;
-  text-align: center;
+const StyledBox = styled.div`
+  width: 70%;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #f5f5f5;
 `;
 
-const StyleH1 = styled.h1`
-  color: white;
+const StyledRightBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 7px;
 `;
 
 function App() {
-  const [data, setData] = useState([1, 2, 3, 4]);
+  console.log('App()');
 
+  // 그림이 그릴 것들을 상태로 관리
+  const [posts, setPosts] = useState(getData());
+
+  function addPost() {
+    // 상태 변경이란
+    // 값을 변경하고 함수를 재실행하는 것
+    setPosts([
+      ...posts,
+      {
+        id: 5,
+        title: '리엑트 전개연산자',
+        content: '전개연산자는 흩뿌리는 연산자',
+      },
+    ]);
+  }
   return (
-    <StyledContainer>
-      <StyleH1>스타일 컴포넌트 디자인 해보기</StyleH1>
-      {data.map((num) => (
-        <Center num={num} haha="하하" />
-      ))}
-    </StyledContainer>
+    <div>
+      <NavBar />
+      <StyledBox>
+        <StyledRightBox>
+          <button onClick={() => addPost()}> 추가</button>
+        </StyledRightBox>
+        {posts.map((post) => (
+          <PostItem post={post} />
+        ))}
+      </StyledBox>
+    </div>
   );
 }
 
