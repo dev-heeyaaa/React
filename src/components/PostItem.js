@@ -24,6 +24,7 @@ function PostItem(props) {
 
   // 구조 분해 할당
   const { id, title, content } = props.post;
+  const deleteById = props.deleteById;
 
   return (
     <StyledPostBox>
@@ -31,8 +32,8 @@ function PostItem(props) {
         {id} : {title}
       </StyledTitle>
       <StyledButtonBox>
-        <MyButton text={'삭제'} color={'red'} />
-        <MyButton text={'상세보기'} />
+        <button onClick={() => deleteById(id)}>삭제</button>
+        <button>상세보기</button>
       </StyledButtonBox>
     </StyledPostBox>
   );
